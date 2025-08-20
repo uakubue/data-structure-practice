@@ -34,7 +34,7 @@ class singlyLinkedList{
         this.tail = newTail;
         this.tail.next = null;
         this.length--;
-        if(list.head === 0){
+        if(this.head === 0){
             list.head = null;
             list.tail = null;
         }
@@ -90,14 +90,29 @@ class singlyLinkedList{
         return true;
     }
     remove(index){
-        if(index < 0 || index >= this.length) return null;
+        if(index < 0 || index >= this.length) return undefined;
         if(index === 0) return this.shift();
         if(index === this.length - 1) return this.pop();
-        var previousNode = this.get(next - 1);
-        var removed = previousNode.next();
+        var previousNode = this.get(index - 1);
+        var removed = previousNode.next;
         previousNode.next = removed.next;
         this.length--;
         return removed;
+    }
+    reverse(){
+        var node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        var next;
+        var prev = null;
+
+        for( var i = 0; i < this.length; i++){
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+        return this;
     }
 
 }
@@ -107,6 +122,6 @@ list.push("World")
 list.push("Welcome")
 list.push("To")
 list.push("My")
-list.push("Home")
+list.get(1)
 
 
